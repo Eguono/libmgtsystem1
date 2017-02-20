@@ -1,0 +1,44 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>S/N</th>
+        <th>Borrower Email</th>
+        <th>Date Borrowed</th>
+        <th>Date Due</th>
+         <th>Authorised By</th>
+         <th>Date Returned</th>
+         <th>Copies</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+     {% if booklist %}
+     {% set inc = 1 %}
+      {% for borrowedBooks in booklist %}
+        <tr>
+        <td>{{inc}}</td>
+        <td>{{borrowedBooks.local.borrowerEmail}}</td>
+        <td>{{borrowedBooks.local.dateBorrowed}}</td>
+        <td>{{borrowedBooks.local.dueDate}}</td>
+        <td>{{borrowedBooks.local.authorisedBy}}</td>
+        <td>{{borrowedBooks.local.dateReturned}}</td>
+        <td>{{borrowedBooks.local.copies}}</td>
+
+        <td>
+        <a class = "btn btn-primary" href = '/bookReturned?id={{borrowedBook._id}}'>Return Book</a>
+        <!--<button type="button" class="btn btn-warning">Check Out <span class ="glyphicon glyphicon-fast-forward"</span></button>-->
+        </td>
+      </tr>
+        {% set inc = inc + 1 %}
+        <!--<div class="alert alert-danger">{{ error.msg }}</div>-->
+      {% endfor %}
+  
+  {% endif %}
+      
+    </tbody>
+  </table>
+  {% endblock %}

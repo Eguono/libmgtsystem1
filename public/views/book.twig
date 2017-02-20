@@ -1,0 +1,47 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h2 class="page-header">{{title}}</h2>
+  {% if errors %}
+      {% for error in errors %}
+        <div class="alert alert-danger">{{ error.msg }}</div>
+      {% endfor %}
+  
+  {% endif %}
+  <form method="post" action="/book">
+      <div class="form-group">
+          <label for="bookName">Book Name</label>
+          <input type="text" name="bookName" id="bookName" class="form-control" placeholder="Book Name">
+      </div>  
+      <!--<div class="form-group">
+          <label for="bookId">Book Id</label>
+          <input type="text" name="bookId" id="bookId" class="form-control" placeholder="Insert Id">
+      </div>-->
+      <div class="form-group">
+          <label for="imageUrl">select book image</label>
+          <input type="file" name="file" id="bookFile" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="bookDescription">Book Description</label>
+          <input type="text" name="bookDescription" id="bookDescription" class="form-control" placeholder="BookDescription">
+      </div>
+      <div class="form-group">
+          <label for="addedBy">Added By</label>
+          <input type="text" name="addedBy" id="addedBy" class="form-control" placeholder="addedBy">
+      </div>
+      <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" name="author" id="author" class="form-control" placeholder="Insert Author">
+      </div>
+      <div class="form-group">
+          <label for="YearOfPublication">Year Of Publication</label>
+          <input type="text" name="yearOfPublication" id="yearOfPublication" class="form-control" placeholder="Insert Publication Year">
+      </div>
+      <div class="form-group">
+          <label for="coopies">Copies</label>
+          <input type="text" name="copies" id="copies" class="form-control" placeholder="Insert Copies of books available">
+      </div>
+      
+      <button type="submit" class="btn btn-default" onclick="return confirm('Do you wish to proceed ?')">Submit</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>S/N</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Description</th>
+         <th>copies</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+     {% if booklist %}
+     {% set inc = 1 %}
+      {% for book in booklist %}
+        <tr>
+        <td>{{inc}}</td>
+        <td>{{book.local.bookName}}</td>
+        <td>{{book.local.author}}</td>
+        <td>{{book.local.bookDescription}}</td>
+        <td>{{book.local.copies}}</td>
+        <td>
+        <a class = "btn btn-primary" href = '/bookUpdate?id={{book._id}}'>Edit</a>
+        <a class = "btn btn-warning" href = '/bookDelete?id={{book._id}}'>Remove</a>
+        <a class = "btn btn-primary" href = '/bookBorrowed?id={{book._id}}'>Borrow Book</a>
+        <!--<button type="button" class="btn btn-warning">Check Out <span class ="glyphicon glyphicon-fast-forward"</span></button>-->
+        </td>
+      </tr>
+        {% set inc = inc + 1 %}
+        
+        <!--<div class="alert alert-danger">{{ error.msg }}</div>-->
+      {% endfor %}
+  
+  {% endif %}
+      
+    </tbody>
+  </table>
+  {% endblock %}

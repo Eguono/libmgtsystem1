@@ -1,0 +1,49 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h2 class="page-header">{{title}}</h2>
+  {% if errors %}
+      {% for error in errors %}
+        <div class="alert alert-danger">{{ error.msg }}</div>
+      {% endfor %}
+  
+  {% endif %}
+
+  {% if bookObject %}
+
+      <form method="post" action='/bookBorrowed?Id={{bookObject._id }}' >
+      <div class="form-group">
+          <label for="bookName">Book Name</label>
+          <input type="text" name="bookName" id="bookName" value ="{{bookObject.local.bookName }}" class="form-control" placeholder="Book Name">
+      </div>  
+      <div class="form-group">
+          <label for="borrowerEmail">Borrower's Email</label>
+          <input type="email" name="borrowerEmail" id="borrowerEmail" class="form-control" placeholder="Insert Borrower's Email">
+      </div> 
+      <div class="form-group">
+          <label for="dateBorrowed">Date Borrowed</label>
+          <input type="date" name="dateBorrowed" id="dateBorrowed" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="authorisedBy">Authorised By</label>
+          <input type="text" name="authorisedBy" id="authorisedBy" class="form-control" placeholder="Please Insert Admin Id">
+      </div>
+      <div class="form-group">
+          <label for="dueDate">Due Date</label>
+          <input type="date" name="dueDate" id="dueDate" class="form-control">
+      </div> 
+      <div class="form-group">
+          <label for="dateReturned">Date Returned</label>
+          <input type="date" name="dateReturned" id="dateReturned" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="copies"><span>Copies </span>{{bookObject.local.copies}}</label>
+      </div>
+      
+      <button type="submit" class="btn btn-default">Borrow Book</button>
+      
+  </form>
+  
+  {% endif %}
+  
+{% endblock %}
